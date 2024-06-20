@@ -18,9 +18,30 @@ const UserLogin = () => {
         login,
         password,
       });
-      localStorage.setItem("token", response.data.token);
-      const userRole = response.data.role; // assuming response contains the role
+
+      const { token } = response.data;
+      localStorage.setItem("token", token);
       alert("Login successful");
+
+      fetchUserRole(token);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setError(error.response.data.message);
+      } else {
+        setError("Server error");
+      }
+    }
+  };
+
+  const fetchUserRole = async (token) => {
+    try {
+      const response = await axios.get("http://localhost:5005/Login/role", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const userRole = response.data.role;
 
       switch (userRole) {
         case "admin":
@@ -37,32 +58,14 @@ const UserLogin = () => {
           break;
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        setError(error.response.data.message);
-      } else {
-        setError("Server error");
-      }
+      setError("Failed to fetch user role");
     }
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      const userRole = "admin"; 
-      switch (userRole) {
-        case "admin":
-          window.location.href = "/admin-dashboard";
-          break;
-        case "student":
-          window.location.href = "/student-dashboard";
-          break;
-        case "teacher":
-          window.location.href = "/teacher-dashboard";
-          break;
-        default:
-          alert("Unknown user role");
-          break;
-      }
+      fetchUserRole(token);
     }
   }, []);
 
@@ -82,7 +85,7 @@ const UserLogin = () => {
             value={login}
             onChange={(e) => setLogin(e.target.value)}
             required
-             placeholder="Enter EmailId/PhoneNo"
+            placeholder="Enter EmailId/PhoneNo"
           />
         </div>
         <div className="form-field d-flex align-items-center">

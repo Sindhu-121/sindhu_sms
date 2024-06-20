@@ -4,7 +4,12 @@ const db = require('./DataBase');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config(); // Ensure this line is at the top
-
+const users = [
+    { id: 1, login: 'admin', password: 'password', role: 'admin' },
+    { id: 2, login: 'student', password: 'password', role: 'student' },
+    { id: 3, login: 'teacher', password: 'password', role: 'teacher' },
+  ];
+  
 router.post('/login', async (req, res) => {
     const { login, password } = req.body;
 
@@ -48,5 +53,23 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+// User role endpoint
+router.get('/role', (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+  
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = users.find(u => u.id === decoded.id);
+  
+      if (user) {
+        res.json({ role: user.role });
+      } else {
+        res.status(404).json({ message: "User not found" });
+      }
+    } catch (error) {
+      res.status(401).json({ message: "Invalid token" });
+    }
+  });
 
 module.exports = router;
