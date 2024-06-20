@@ -76,24 +76,24 @@ const UserLogin = () => {
       <form className="p-3 mt-3" onSubmit={handleSubmit}>
         <div className="form-field d-flex align-items-center">
           <span className="far fa-user"></span>
-          <label>Username/Email/Phone</label>
           <input
             type="text"
             className="form-control"
             value={login}
             onChange={(e) => setLogin(e.target.value)}
             required
+             placeholder="Enter EmailId/PhoneNo"
           />
         </div>
         <div className="form-field d-flex align-items-center">
           <span className="fas fa-key"></span>
-          <label>Password</label>
           <input
             type="password"
             className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter Password"
           />
         </div>
         {error && <div className="text-danger">{error}</div>}
@@ -101,9 +101,6 @@ const UserLogin = () => {
           Login
         </button>
       </form>
-      <div className="text-center fs-6">
-        {/* No need for navRef here */}
-      </div>
     </div>
   );
 };
