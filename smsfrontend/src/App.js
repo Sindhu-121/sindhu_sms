@@ -5,11 +5,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import UserLogin from './UserLogin';
+import UserLogin from './Loginsystem/UserLogin';
 import Register from "./Register"
-import Admin_dashboard from './Admin_dashboard';
-import Student_dashboard from './Student_dashboard';
-import Teacher_dashboard from "./Teacher_dashboard"
+import Admin_dashboard from './AdminComponent/Admin_dashboard';
+import Student_dashboard from './StudentComponent/Student_dashboard';
+import Teacher_dashboard from "./TeacherComponent/Teacher_dashboard"
 function App() {
   return (
     <div className="App">
