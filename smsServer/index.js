@@ -10,10 +10,10 @@ app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
-const Login=require('./Login')
+const Login=require('./LoginSystem/Login')
 app.use('/login',Login);
 
-const register=require('./register')
+const register=require('./LoginSystem/register')
 app.use('/register',register);
 
 // const generate=require('./generate')
