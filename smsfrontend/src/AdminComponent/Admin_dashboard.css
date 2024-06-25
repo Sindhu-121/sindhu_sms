@@ -14,7 +14,7 @@
   
   .nav-link.active {
     background-color: #007bff;
-    color: white;
+    /* color: white; */
     border-radius: 9px 0 9px 0;
   }
   

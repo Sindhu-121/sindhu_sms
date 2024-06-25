@@ -18,12 +18,12 @@ function Admin_dashboard() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <nav className="col-md-3 d-none d-md-block bg-dark sidebar">
+        <nav className="col-md-3 d-none d-md-block sidebar shadow-lg p-3 mb-5 bg-white rounded">
           <div className="sidebar-sticky">
             <ul className="nav flex-column">
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-white"
+                  className="nav-link text-black"
                   to="dashboard"
                   activeClassName="active"
                 >
@@ -32,7 +32,7 @@ function Admin_dashboard() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-white"
+                  className="nav-link text-black"
                   to="add-admin"
                   activeClassName="active"
                 >
@@ -41,7 +41,7 @@ function Admin_dashboard() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-white"
+                  className="nav-link text-black"
                   to="add-student"
                   activeClassName="active"
                 >
@@ -50,7 +50,7 @@ function Admin_dashboard() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-white"
+                  className="nav-link text-black"
                   to="add-teacher"
                   activeClassName="active"
                 >
